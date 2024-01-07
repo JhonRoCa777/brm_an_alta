@@ -1,6 +1,6 @@
-const app = require('./app/index');
+const app = require('./app');
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3030;
 
 app.listen(PORT, () => {
     console.log(`--- SERVER RUNNING ON PORT ${PORT} ---`);
