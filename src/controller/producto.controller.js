@@ -19,11 +19,7 @@ const create = async (req, res) => {
 
 const read = async (req, res) => {
     let response;
-    response = await Producto.findOne({
-        where: {
-            id: req.params.id
-        }
-    });
+    response = await Producto.findByPk(req.params.id);
     (response)
     ? res.status(200).json(response)
     : res.status(404).json();

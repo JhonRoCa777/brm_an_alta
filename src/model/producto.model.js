@@ -1,10 +1,5 @@
-const { Sequelize, Model, DataTypes, UUIDV4 } = require("sequelize");
-
-const sequelize = new Sequelize("brm_an_alta_prueba", "root", "", {
-    host: "localhost",
-    dialect: "mysql",
-    port: "3306"
-});
+const { Model, DataTypes, UUIDV4 } = require("sequelize");
+const sequelize = require("../database/index");
 
 class Producto extends Model {}
 
@@ -47,14 +42,3 @@ Producto.init({
 });
 
 module.exports = Producto;
-
-// async function testConnection(){
-//     try {
-//         await sequelize.authenticate();
-//         console.log("TODO BIEN");
-//     } catch (error) {
-//         console.error("TODO MAL", error);
-//     }
-// }
-
-// testConnection();
