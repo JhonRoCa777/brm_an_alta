@@ -15,19 +15,19 @@ const generate = async (req, res) => {
 
     cont = 0;
 
-    // while(cont < 30) {
-    //     try {
-    //         await Producto.create({
-    //             numero_lote: faker.string.alphanumeric(15),
-    //             nombre: faker.commerce.productName(),
-    //             cantidad: faker.number.int({ min: 0, max: 30 }),
-    //             precio: faker.number.int({ min: 100100, max: 999999 })
-    //         });
-    //         cont++;
-    //     } catch (error) {
-    //        res.status(400).json(error);
-    //     }
-    // }
+    while(cont < 30) {
+        try {
+            await Producto.create({
+                numero_lote: faker.string.alphanumeric(15),
+                nombre: faker.commerce.productName(),
+                cantidad: faker.number.int({ min: 0, max: 30 }),
+                precio: faker.number.int({ min: 100100, max: 999999 })
+            });
+            cont++;
+        } catch (error) {
+           res.status(400).json(error);
+        }
+    }
 
     //Se generan Credenciales y Usuarios
     await Credencial.sync({ force: true });
@@ -42,7 +42,7 @@ const generate = async (req, res) => {
     while(cont < roles.length) {
         try {
             current_credencial = await Credencial.create({
-                email: faker.internet.email(),
+                email: roles[cont].toLowerCase()+"@gmail.com",
                 password: await bcryptHelper.encrypt(roles[cont].toLowerCase()+'12345'),
                 role: roles[cont]
             });
