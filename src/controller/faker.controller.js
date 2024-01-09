@@ -5,6 +5,8 @@ const bcryptHelper = require("../helper/bcrypt.helper");
 const Producto = require("../model/producto.model");
 const Credencial = require("../model/credencial.model");
 const Usuario = require("../model/usuario.model");
+const Factura = require("../model/factura.model");
+const Compra = require("../model/compra.model");
 
 const generate = async (req, res) => {
 
@@ -60,7 +62,11 @@ const generate = async (req, res) => {
             res.status(400).json(error);
         }
     }
-    
+
+    //Se generan Productos
+    await Factura.sync({ force: true });
+    await Compra.sync({ force: true });
+
     res.status(201).json();
 };
 

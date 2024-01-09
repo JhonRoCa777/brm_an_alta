@@ -11,25 +11,8 @@ const sign = (id, role) => {
     return jwt.sign(
         {id, role},
         process.env.JWT_KEY,
-        {expiresIn: '1m'}
+        {expiresIn: '60m'}
     );
 }
 
-/**
- * @param token token a validar
- * 
- * @returns true si es válido
- * @returns false si no es válido
- */
-const validate = (token) => {
-    jwt.verify(
-        token,
-        process.env.JWT_KEY,
-        (err, user) => {
-            if(err) return false
-            else return true
-        }
-    );
-}
-
-module.exports = { sign, validate }
+module.exports = { sign }
